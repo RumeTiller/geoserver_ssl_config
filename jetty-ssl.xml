@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+  <Call name="addConnector">
+    <Arg>
+      <New id="sslConnector" class="org.eclipse.jetty.server.ServerConnector">
+        <Arg name="server"><Ref refid="Server" /></Arg>
+        <Set name="port"><Property name="jetty.ssl.port" default="8443" /></Set>
+      </New>
+    </Arg>
+  </Call>
+
+<New id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
+    <Arg><Ref refid="httpConfig"/></Arg>
+    <Call name="addCustomizer">
+      <Arg>
+        <New class="org.eclipse.jetty.server.SecureRequestCustomizer">
+          <Set name="sniHostCheck">false</Set>
+        </New>
+      </Arg>
+    </Call>
+  </New>
+
+</Configure>

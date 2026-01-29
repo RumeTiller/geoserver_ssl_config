@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_3.dtd">
+
+<Configure id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory$Server">
+  <Set name="KeyStorePath">etc/sanboard.gov.bd.pfx</Set>
+  <Set name="KeyStoreType">PKCS12</Set>
+  <Set name="KeyStorePassword">Tiller_@159</Set>
+  <Set name="KeyManagerPassword">Tiller_@159</Set>
+  
+  <Set name="TrustStorePath">etc/sanboard.gov.bd.pfx</Set>
+  <Set name="TrustStoreType">PKCS12</Set>
+  <Set name="TrustStorePassword">Tiller_@159</Set>
+
+  <!-- Enable only TLS 1.2+ -->
+  <Set name="IncludeProtocols">
+    <Array type="java.lang.String">
+      <Item>TLSv1.2</Item>
+      <Item>TLSv1.3</Item>
+    </Array>
+  </Set>
+
+  <!-- Disable hostname verification for self-signed -->
+  <Set name="EndpointIdentificationAlgorithm"></Set>
+</Configure>
